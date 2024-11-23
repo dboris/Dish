@@ -27,7 +27,7 @@
     {
         progress = (self.hasTarix) ? 0.75 : 0.4+progress/2.0/1.25;
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [self.feed setProgress:progress];
+            [(DHFeed *)self.feed setProgress:progress];
             [[[self.feed cell] progressView] setProgress:progress animated:YES];
         });
     }
@@ -39,7 +39,7 @@
     {
         progress = ([self.feed isKindOfClass:[DHTransferFeed class]]) ? progress : (self.hasTarix) ? 0.75 + progress/4 : 0.8+progress/5;
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [self.feed setProgress:progress];
+            [(DHFeed *)self.feed setProgress:progress];
             [[[self.feed cell] progressView] setProgress:progress animated:YES];
         });
     }
@@ -51,7 +51,7 @@
     {
         double unalteredProgress = progress;
         progress = (self.hasTarix) ? progress/2*1.5 : progress/2/1.25;
-        [self.feed setProgress:progress];
+        [(DHFeed *)self.feed setProgress:progress];
         [[[self.feed cell] progressView] setProgress:progress animated:YES];
         if(expectedLength != -1)
         {

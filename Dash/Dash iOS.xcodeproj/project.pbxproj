@@ -159,7 +159,6 @@
 		43AB65831ED19D2F00A6EC18 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BB043E19ED0B19000FBC0D /* JavaScriptCore.framework */; };
 		43AB65841ED19D2F00A6EC18 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430C768C19E55E6E006F0DE0 /* MobileCoreServices.framework */; };
 		43AB65851ED19D2F00A6EC18 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FE06719E2B4010022ADF4 /* WebKit.framework */; };
-		43AB65861ED19D2F00A6EC18 /* libarchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EE932919CD079600FFF30C /* libarchive.a */; };
 		43AB65871ED19D2F00A6EC18 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43352F6419C7A69900D4B1D8 /* libz.dylib */; };
 		43AB65881ED19D2F00A6EC18 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4303A3C319C658B000A7CD85 /* libsqlite3.dylib */; };
 		43AB65891ED19D2F00A6EC18 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FD2EE719BB8D87007E594D /* CoreGraphics.framework */; };
@@ -228,7 +227,6 @@
 		43EDD19B19C51E9C00A0EBEC /* DHLatencyTestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EDD19919C51E9C00A0EBEC /* DHLatencyTestResult.m */; };
 		43EDD19F19C52E3400A0EBEC /* DHFeedResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EDD19E19C52E3400A0EBEC /* DHFeedResult.m */; };
 		43EDD1A219C5309300A0EBEC /* DHFileDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EDD1A119C5309300A0EBEC /* DHFileDownload.m */; };
-		43EE932A19CD079600FFF30C /* libarchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EE932919CD079600FFF30C /* libarchive.a */; };
 		43EED91C1B607DB800F3DC35 /* on_page_load.js in Resources */ = {isa = PBXBuildFile; fileRef = 43EED91B1B607DB800F3DC35 /* on_page_load.js */; };
 		43F25F9C19EBDEF30025CDC4 /* DHBlockProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F25F9B19EBDEF30025CDC4 /* DHBlockProtocol.m */; };
 		43F31AAE200BB52F0082066C /* DHDocsetBrowserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C39BFF200A836D00734571 /* DHDocsetBrowserViewModel.m */; };
@@ -264,6 +262,7 @@
 		82CA509326133E2700AA965F /* UIViewController+ObserveInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CA509226133E2700AA965F /* UIViewController+ObserveInterface.swift */; };
 		82CA509426133E2700AA965F /* UIViewController+ObserveInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CA509226133E2700AA965F /* UIViewController+ObserveInterface.swift */; };
 		9A8C217E42163C61F294085F /* libPods-Dash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB60EFDCE4B356ECE28E89D /* libPods-Dash.a */; };
+		A18E0BA22CF1957500BA02F3 /* libarchive.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A18E0BA12CF1956B00BA02F3 /* libarchive.2.tbd */; };
 		A5151F41679D15281D40AA89 /* libPods-Dash-Dash App Store.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F3DE7BCF54846FEC11FF28 /* libPods-Dash-Dash App Store.a */; };
 		F5C39C00200A836D00734571 /* DHDocsetBrowserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C39BFF200A836D00734571 /* DHDocsetBrowserViewModel.m */; };
 /* End PBXBuildFile section */
@@ -467,7 +466,6 @@
 		43EDD19E19C52E3400A0EBEC /* DHFeedResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHFeedResult.m; sourceTree = "<group>"; };
 		43EDD1A019C5309300A0EBEC /* DHFileDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHFileDownload.h; sourceTree = "<group>"; };
 		43EDD1A119C5309300A0EBEC /* DHFileDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHFileDownload.m; sourceTree = "<group>"; };
-		43EE932919CD079600FFF30C /* libarchive.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libarchive.a; sourceTree = "<group>"; };
 		43EED91B1B607DB800F3DC35 /* on_page_load.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = on_page_load.js; sourceTree = "<group>"; };
 		43F25F9A19EBDEF30025CDC4 /* DHBlockProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHBlockProtocol.h; sourceTree = "<group>"; };
 		43F25F9B19EBDEF30025CDC4 /* DHBlockProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHBlockProtocol.m; sourceTree = "<group>"; };
@@ -515,6 +513,7 @@
 		82B5A16226104223009D3378 /* DHWebViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHWebViewExtension.swift; sourceTree = "<group>"; };
 		82CA509226133E2700AA965F /* UIViewController+ObserveInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ObserveInterface.swift"; sourceTree = "<group>"; };
 		91F3DE7BCF54846FEC11FF28 /* libPods-Dash-Dash App Store.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dash-Dash App Store.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A18E0BA12CF1956B00BA02F3 /* libarchive.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libarchive.2.tbd; path = usr/lib/libarchive.2.tbd; sourceTree = SDKROOT; };
 		BAE47FF5DEE33300EBFF9AEA /* Pods-Dash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash/Pods-Dash.debug.xcconfig"; sourceTree = "<group>"; };
 		BFB60EFDCE4B356ECE28E89D /* libPods-Dash.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dash.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5C39BFE200A836D00734571 /* DHDocsetBrowserViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DHDocsetBrowserViewModel.h; sourceTree = "<group>"; };
@@ -529,7 +528,6 @@
 				43AB65831ED19D2F00A6EC18 /* JavaScriptCore.framework in Frameworks */,
 				43AB65841ED19D2F00A6EC18 /* MobileCoreServices.framework in Frameworks */,
 				43AB65851ED19D2F00A6EC18 /* WebKit.framework in Frameworks */,
-				43AB65861ED19D2F00A6EC18 /* libarchive.a in Frameworks */,
 				43AB65871ED19D2F00A6EC18 /* libz.dylib in Frameworks */,
 				43AB65881ED19D2F00A6EC18 /* libsqlite3.dylib in Frameworks */,
 				43AB65891ED19D2F00A6EC18 /* CoreGraphics.framework in Frameworks */,
@@ -544,10 +542,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A18E0BA22CF1957500BA02F3 /* libarchive.2.tbd in Frameworks */,
 				43BB043F19ED0B19000FBC0D /* JavaScriptCore.framework in Frameworks */,
 				430C768D19E55E6E006F0DE0 /* MobileCoreServices.framework in Frameworks */,
 				437FE06819E2B4010022ADF4 /* WebKit.framework in Frameworks */,
-				43EE932A19CD079600FFF30C /* libarchive.a in Frameworks */,
 				43352F6519C7A69900D4B1D8 /* libz.dylib in Frameworks */,
 				4303A3C419C658B000A7CD85 /* libsqlite3.dylib in Frameworks */,
 				43FD2EE819BB8D87007E594D /* CoreGraphics.framework in Frameworks */,
@@ -623,7 +621,6 @@
 			children = (
 				43352F5F19C7A67200D4B1D8 /* archive_entry.h */,
 				43352F6019C7A67200D4B1D8 /* archive.h */,
-				43EE932919CD079600FFF30C /* libarchive.a */,
 			);
 			name = libarchive;
 			sourceTree = "<group>";
@@ -1017,6 +1014,7 @@
 		43FD2EE419BB8D87007E594D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A18E0BA12CF1956B00BA02F3 /* libarchive.2.tbd */,
 				43A1C2632001700600512DB3 /* Apple_Docs_Framework.framework */,
 				43BB043E19ED0B19000FBC0D /* JavaScriptCore.framework */,
 				430C768C19E55E6E006F0DE0 /* MobileCoreServices.framework */,
@@ -1143,7 +1141,7 @@
 						ProvisioningStyle = Automatic;
 					};
 					43FD2EE119BB8D87007E594D = {
-						DevelopmentTeam = RJJ4L4FV66;
+						DevelopmentTeam = JTJMWWNW66;
 						LastSwiftMigration = 1240;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1822,7 +1820,7 @@
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bogdan Popescu (JB3QRP5DC5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = RJJ4L4FV66;
+				DEVELOPMENT_TEAM = JTJMWWNW66;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks\"";
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1841,7 +1839,7 @@
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.chy.dash.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.dboris.dish-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1866,7 +1864,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bogdan Popescu (JB3QRP5DC5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = RJJ4L4FV66;
+				DEVELOPMENT_TEAM = JTJMWWNW66;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1889,7 +1887,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chy.dash.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.dboris.dish-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;

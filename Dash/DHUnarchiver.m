@@ -192,14 +192,14 @@ static int copy_data(struct archive *ar, struct archive *aw)
     off_t offset;
     
     for (;;) {
-        r = tk_archive_read_data_block(ar, &buff, &size, &offset);
-        if (r == tk_archive_EOF)
-            return (tk_archive_OK);
-        if (r < tk_archive_OK)
+        r = archive_read_data_block(ar, &buff, &size, &offset);
+        if (r == ARCHIVE_EOF)
+            return (ARCHIVE_OK);
+        if (r < ARCHIVE_OK)
             return (r);
-        r = (int)tk_archive_write_data_block(aw, buff, size, offset);
-        if (r < tk_archive_OK) {
-            fprintf(stderr, "%s\n", tk_archive_error_string(aw));
+        r = (int)archive_write_data_block(aw, buff, size, offset);
+        if (r < ARCHIVE_OK) {
+            fprintf(stderr, "%s\n", archive_error_string(aw));
             return (r);
         }
     }
@@ -218,58 +218,58 @@ NSMutableData * extract_from_memory(const void * buff, size_t size)
 {
     NSMutableData *data = [[NSMutableData alloc] init];
     struct archive *a;
-    struct tk_archive_entry *entry;
+    struct archive_entry *entry;
     int r;
     
-    a = tk_archive_read_new();
-    tk_archive_read_support_format_tar(a);
-    tk_archive_read_support_compression_none(a);
+    a = archive_read_new();
+    archive_read_support_format_tar(a);
+    archive_read_support_compression_none(a);
     
-    if ((r = tk_archive_read_open_memory(a, (void*)buff, size)))
+    if ((r = archive_read_open_memory(a, (void*)buff, size)))
     {
         data = nil;
         goto cleanup;
     }
     for (;;) {
-        r = tk_archive_read_next_header(a, &entry);
-        if (r == tk_archive_EOF)
+        r = archive_read_next_header(a, &entry);
+        if (r == ARCHIVE_EOF)
             break;
-        if (r < tk_archive_OK)
-            fprintf(stderr, "%s\n", tk_archive_error_string(a));
-        if (r < tk_archive_WARN)
+        if (r < ARCHIVE_OK)
+            fprintf(stderr, "%s\n", archive_error_string(a));
+        if (r < ARCHIVE_WARN)
         {
             data = nil;
             goto cleanup;
         }
-        if (tk_archive_entry_size(entry) > 0) {
+        if (archive_entry_size(entry) > 0) {
             const void *readBuff;
             size_t readSize;
             off_t offset;
             
             for (;;) {
-                r = tk_archive_read_data_block(a, &readBuff, &readSize, &offset);
-                if (r == tk_archive_EOF)
+                r = archive_read_data_block(a, &readBuff, &readSize, &offset);
+                if (r == ARCHIVE_EOF)
                     break;
-                if (r < tk_archive_OK)
+                if (r < ARCHIVE_OK)
                     break;
                 [data appendBytes:readBuff length:readSize];
             }
             
-            if (r < tk_archive_WARN)
+            if (r < ARCHIVE_WARN)
             {
                 data = nil;
                 goto cleanup;
             }
         }
-        if (r < tk_archive_WARN)
+        if (r < ARCHIVE_WARN)
         {
             data = nil;
             goto cleanup;
         }
     }
 cleanup:
-    tk_archive_read_close(a);
-    tk_archive_read_finish(a);
+    archive_read_close(a);
+    archive_read_finish(a);
     return data;
 }
 
@@ -279,59 +279,59 @@ static int extract_single_file(const char *filename, NSString *output_file)
     [stream open];
     
     struct archive *a;
-    struct tk_archive_entry *entry;
+    struct archive_entry *entry;
     int r = 0;
     int ret = 0;
     
-    a = tk_archive_read_new();
-    tk_archive_read_support_format_tar(a);
-    tk_archive_read_support_compression_none(a);
+    a = archive_read_new();
+    archive_read_support_format_tar(a);
+    archive_read_support_compression_none(a);
     
-    if ((r = tk_archive_read_open_filename(a, filename, 10240)))
+    if ((r = archive_read_open_filename(a, filename, 10240)))
     {
         ret = 1;
         goto cleanup;
     }
     for (;;) {
-        r = tk_archive_read_next_header(a, &entry);
-        if (r == tk_archive_EOF)
+        r = archive_read_next_header(a, &entry);
+        if (r == ARCHIVE_EOF)
             break;
-        if (r < tk_archive_OK)
-            fprintf(stderr, "%s\n", tk_archive_error_string(a));
-        if (r < tk_archive_WARN)
+        if (r < ARCHIVE_OK)
+            fprintf(stderr, "%s\n", archive_error_string(a));
+        if (r < ARCHIVE_WARN)
         {
             ret = 1;
             goto cleanup;
         }
-        if (tk_archive_entry_size(entry) > 0) {
+        if (archive_entry_size(entry) > 0) {
             const void *buff;
             size_t size;
             off_t offset;
             
             for (;;) {
-                r = tk_archive_read_data_block(a, &buff, &size, &offset);
-                if (r == tk_archive_EOF)
+                r = archive_read_data_block(a, &buff, &size, &offset);
+                if (r == ARCHIVE_EOF)
                     break;
-                if (r < tk_archive_OK)
+                if (r < ARCHIVE_OK)
                     break;
                 [stream write:buff maxLength:size];
             }
             
-            if (r < tk_archive_WARN)
+            if (r < ARCHIVE_WARN)
             {
                 ret = 1;
                 goto cleanup;
             }
         }
-        if (r < tk_archive_WARN)
+        if (r < ARCHIVE_WARN)
         {
             ret = 1;
             goto cleanup;
         }
     }
 cleanup:
-    tk_archive_read_close(a);
-    tk_archive_read_finish(a);
+    archive_read_close(a);
+    archive_read_finish(a);
     [stream close];
     return ret;
 }
@@ -340,24 +340,24 @@ static int extract(const char *filename, id delegate)
 {
     struct archive *a;
     struct archive *ext;
-    struct tk_archive_entry *entry;
+    struct archive_entry *entry;
     int flags;
     int r;
     
-    flags = tk_archive_EXTRACT_TIME;
-    flags |= tk_archive_EXTRACT_PERM;
-    flags |= tk_archive_EXTRACT_ACL;
-    flags |= tk_archive_EXTRACT_FFLAGS;
+    flags = ARCHIVE_EXTRACT_TIME;
+    flags |= ARCHIVE_EXTRACT_PERM;
+    flags |= ARCHIVE_EXTRACT_ACL;
+    flags |= ARCHIVE_EXTRACT_FFLAGS;
     
-    a = tk_archive_read_new();
-    tk_archive_read_support_format_all(a);
-    tk_archive_read_support_compression_all(a);
+    a = archive_read_new();
+    archive_read_support_format_all(a);
+    archive_read_support_compression_all(a);
     
-    ext = tk_archive_write_disk_new();
-    tk_archive_write_disk_set_options(ext, flags);
-    tk_archive_write_disk_set_standard_lookup(ext);
+    ext = archive_write_disk_new();
+    archive_write_disk_set_options(ext, flags);
+    archive_write_disk_set_standard_lookup(ext);
     int ret = 0;
-    if ((r = tk_archive_read_open_filename(a, filename, 10240)))
+    if ((r = archive_read_open_filename(a, filename, 10240)))
     {
         ret = 1;
         goto cleanup;
@@ -368,7 +368,7 @@ static int extract(const char *filename, id delegate)
     for (;;) {
         if(total > 0)
         {
-            __LA_INT64_T progress = tk_archive_position_compressed(a);
+            __LA_INT64_T progress = archive_position_compressed(a);
             if(previousProgress != progress)
             {
                 double currentPercent = (double)progress/total;
@@ -387,43 +387,43 @@ static int extract(const char *filename, id delegate)
             goto cleanup;
         }
         
-        r = tk_archive_read_next_header(a, &entry);
-        if (r == tk_archive_EOF)
+        r = archive_read_next_header(a, &entry);
+        if (r == ARCHIVE_EOF)
             break;
-        if (r < tk_archive_OK)
-            fprintf(stderr, "%s\n", tk_archive_error_string(a));
-        if (r < tk_archive_WARN)
+        if (r < ARCHIVE_OK)
+            fprintf(stderr, "%s\n", archive_error_string(a));
+        if (r < ARCHIVE_WARN)
         {
             ret = 1;
             goto cleanup;
         }
-        r = tk_archive_write_header(ext, entry);
-        if (r < tk_archive_OK)
-            fprintf(stderr, "%s\n", tk_archive_error_string(ext));
-        else if (tk_archive_entry_size(entry) > 0) {
+        r = archive_write_header(ext, entry);
+        if (r < ARCHIVE_OK)
+            fprintf(stderr, "%s\n", archive_error_string(ext));
+        else if (archive_entry_size(entry) > 0) {
             r = copy_data(a, ext);
-            if (r < tk_archive_OK)
-                fprintf(stderr, "%s\n", tk_archive_error_string(ext));
-            if (r < tk_archive_WARN)
+            if (r < ARCHIVE_OK)
+                fprintf(stderr, "%s\n", archive_error_string(ext));
+            if (r < ARCHIVE_WARN)
             {
                 ret = 1;
                 goto cleanup;
             }
         }
-        r = tk_archive_write_finish_entry(ext);
-        if (r < tk_archive_OK)
-            fprintf(stderr, "%s\n", tk_archive_error_string(ext));
-        if (r < tk_archive_WARN)
+        r = archive_write_finish_entry(ext);
+        if (r < ARCHIVE_OK)
+            fprintf(stderr, "%s\n", archive_error_string(ext));
+        if (r < ARCHIVE_WARN)
         {
             ret = 1;
             goto cleanup;
         }
     }
 cleanup:
-    tk_archive_read_close(a);
-    tk_archive_read_finish(a);
-    tk_archive_write_close(ext);
-    tk_archive_write_finish(ext);
+    archive_read_close(a);
+    archive_read_finish(a);
+    archive_write_close(ext);
+    archive_write_finish(ext);
     return ret;
 }
 
